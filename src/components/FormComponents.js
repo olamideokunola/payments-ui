@@ -57,7 +57,7 @@ function TextInput(props) {
         <div className='flex flex-col lg:gap-2'>
             <label className="hidden lg:block">{props.label}</label>
             <input 
-                className='flex p-4 rounded border-2 border-blue-400 text-lg text-black' 
+                className='flex p-2 rounded border-2 border-blue-400 text-lg text-black' 
                 type={getInputType()}
                 name={props.name}
                 placeholder={props.placeholder}
@@ -82,9 +82,9 @@ function SelectInput(props) {
                 onChange={props.onChange}
                 // style="background-image: url(../imgs/logo.png)"
             >
-                {props.options.map((opt, ind) => {
+                {props.options ? props.options.map((opt, ind) => {
                     return <option key={ind} value={opt.value}>{opt.text}</option>
-                })}
+                }):[]}
             </select>
         </div>
     );
@@ -95,7 +95,7 @@ function TextAreaInput(props) {
         <div className='flex flex-col lg:gap-2'>
             <label className="hidden lg:block">{props.label}</label>
             <textarea 
-                className='border-2 border-blue-400 text-lg' 
+                className='border-2 border-blue-400 text-lg p-4' 
                 type='text' 
                 name={props.name}
                 value={props.value}
@@ -223,33 +223,34 @@ class ListView extends React.Component {
 
     gotoLastPage(){
 
-        let currPageIndex = this.lastPage
+        let currPageIndex = this.lastPage === 0 ? 1 : this.lastPage 
         this.moveForward(currPageIndex)  
 
     }
 
     render() {
 
-        let gridClassStr = `grid-cols-${this.props.headers.length}`
+        // let gridClassStr = `grid-cols-${this.props.headers.length}`
 
-        let headerClass = classNames({
-            "hidden lg:grid": true,
-            [gridClassStr]: true,
-            "lg:grid-rows-1 gap-6 text-sm text-blue-600 pb-2 border-b-2": true
-        })
+        // let headerClass = classNames({
+        //     "hidden lg:grid": true,
+        //     [gridClassStr]: true,
+        //     "lg:grid-rows-1 gap-6 text-sm text-blue-600 pb-2 border-b-2": true
+        // })
 
         return(
             <div className=''>
                 <div>
                     {/* <h1>{headerClass}</h1> */}
-                    <div className={headerClass}>
+                    {/* <div className={headerClass}> */}
                         {/* title */}
-                        {this.props.headers.map((header, index) => <p key={index} className=''>{header}</p>)}
-                    </div>
+                        {/* {this.props.headers.map((header, index) => <p key={index} className=''>{header}</p>)} */}
+                    {/* </div> */}
+                    {this.props.displayHeader()}
                 </div>
                 
                 <div className='flex flex-col lg:display gap-4'>
-                    {this.props.items.slice(this.state.startIndex, this.state.endIndex).map((item, index) => {
+                    {this.props.items && this.props.items.slice(this.state.startIndex, this.state.endIndex).map((item, index) => {
                         return <div key={index}>{this.props.displayRow(item, index)}</div>
                     })}
                 </div>
@@ -262,7 +263,7 @@ class ListView extends React.Component {
                     <NavButton onClick={this.gotoPreviousPage}>
                         {`<`}
                     </NavButton>
-                    <p>{`${this.state.currentPage} of ${this.lastPage}`}</p>
+                    <p>{`${this.state.currentPage} of ${this.lastPage === 0 ? 1: this.lastPage}`}</p>
                     <NavButton onClick={this.gotoNextPage}>
                         {`>`}
                     </NavButton>

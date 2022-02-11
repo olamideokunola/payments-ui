@@ -131,6 +131,19 @@ class CaseAuthentication {
             
         }
     }
+    async changeNewPassword(email, password){
+        try {
+            console.log(password)
+
+            let changed = await this.authService.changeNewPassword(email, password)
+
+            return changed
+        } catch (error) {
+            console.error(error)
+            return
+            
+        }
+    }
 
 }
 

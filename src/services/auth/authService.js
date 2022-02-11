@@ -33,6 +33,16 @@ const CHANGE_PASSWORD = gql`
         }
     }
 `
+
+const CHANGE_NEW_PASSWORD = gql`
+    mutation changeNewPassword ($email: String, $password: String) {
+        changeNewPassword(email: $email, password: $password){
+            email
+            successful
+            msg
+        }
+    }
+`
 class AuthService {
     constructor(client){
         this.client = client
@@ -56,7 +66,8 @@ class AuthService {
                 email: decoded.email,
                 country: decoded.country,
                 isAdmin: decoded.isAdmin,
-                roles: decoded.roles
+                roles: decoded.roles,
+                changePassword: decoded.changePassword 
             }
 
         } catch (e) {
@@ -178,6 +189,28 @@ class AuthService {
 
             console.log(result)
             if(!result || !result.data.changePassword.successful)return
+
+            return true
+        } catch (error) {
+            console.log(error)
+            return
+        }
+    }
+
+    async changeNewPassword(email, password){
+        try {
+            console.log(`in changePassword of auth service`)
+            console.log(email)
+
+            const result = await this.client
+                .mutation(CHANGE_NEW_PASSWORD, { email, password })
+                .toPromise()
+                // .then(result => {
+                // console.log(result); // { data: ... }
+                // });
+
+            console.log(result)
+            if(!result || !result.data.changeNewPassword.successful)return
 
             return true
         } catch (error) {

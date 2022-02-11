@@ -2,7 +2,7 @@ import React from 'react'
 
 function ContainerTitle (props) {
     return (
-        <h2 className="border-b-2 border-gray-100 pb-2 font-semibold text-xl">{props.title}</h2>
+        <h2 className="font-semibold text-xl">{props.title}</h2>
     );
 }
 
@@ -10,7 +10,10 @@ function Container (props) {
 
     return (
         <div className="rounded-md bg-white m-4 p-4 shadow-md overflow-auto">
-            {props.title !== undefined && <ContainerTitle title={props.title}/>}
+            <div className="border-b-2 border-gray-100 pb-2 flex flex-row justify-between">
+                {props.title !== undefined && <ContainerTitle title={props.title} />}
+                {props.actionBar}
+            </div>
             {props.children}
         </div>  
     );

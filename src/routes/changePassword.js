@@ -12,37 +12,29 @@ function withLocation(Component){
     return props => <Component {...props} location={useLocation()}/>
 }
 
-class SignIn extends React.Component {
+class ChangePassword extends React.Component {
 
     constructor(props){
         super(props)
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            passwordConfirmation: ''
         }
 
-        this.handleSignInClicked = this.handleSignInClicked.bind(this)
+        this.handlePasswordChangedClicked = this.handlePasswordChangedClicked.bind(this)
         this.handlePasswordChanged = this.handlePasswordChanged.bind(this)
-        this.handleEmailChanged = this.handleEmailChanged.bind(this)
-        
+        this.handlePasswordConfirmationChanged = this.handlePasswordConfirmationChanged.bind(this)
     }
 
-    async handleSignInClicked(event){
-        // console.log(`Sign in button clicked`)
-        // event.preventDefault()
-
-        // let loggedOnUser = await caseAuthentication.signIn({
-        //     email: this.state.email,
-        //     password: this.state.password,
-        //     twoFaCode: ''
-        // })
-
-        // console.log(`user is logged on`)
-        // console.log(loggedOnUser)
-        console.log(`about to call onSignIn`)
+    async handlePasswordChangedClicked(event){
+        event.preventDefault()
+        console.log(`about to call onPasswordChanged`)
         let from = this.props.location.state?.from?.pathname || "/";
-        this.props.onSignIn(event, this.state.email, this.state.password, from)
+        let email = this.props.location.state?.email || "";
+
+        this.props.onChangePasswordClicked(email, this.state.password,this.state.passwordConfirmation, from)
     }
 
     handlePasswordChanged(event){
@@ -50,9 +42,9 @@ class SignIn extends React.Component {
         console.log(`password changed to ${event.target.value}`)
     }
 
-    handleEmailChanged(event){
-        this.setState({email: event.target.value});
-        console.log(`email changed to ${event.target.value}`)
+    handlePasswordConfirmationChanged(event){
+        this.setState({passwordConfirmation: event.target.value});
+        console.log(`password changed to ${event.target.value}`)
     }
 
     render() {
@@ -60,16 +52,12 @@ class SignIn extends React.Component {
         let location = this.props.location ? this.props.location : null
         // let from = this.props.location.state ? this.props.location.state.from : null
 
-        let from = this.props.location.state?.from?.pathname || "/";
+        let email = this.props.location.state?.email || "";
 
-        let formMembers =  <form className='flex flex-col gap-6' onSubmit={this.handleSignInClicked}>
+        let formMembers =  <form className='flex flex-col gap-6' onSubmit={this.handlePasswordChangedClicked}>
             <div className='lg:w-96'>
-                <TextInput 
-                    placeholder='Enter email or phone number' 
-                    label='Email/Phone number' 
-                    onChange={this.handleEmailChanged}
-                    value={this.state.email}
-                    />
+                <p>Email</p>
+                <p className='text-xl font-bold mt-2'>{email}</p>
             </div>
 
             <div className='lg:w-96'>
@@ -79,19 +67,36 @@ class SignIn extends React.Component {
                     onChange={this.handlePasswordChanged}
                     value={this.state.password}
                     />
-                <Link to="/resetPassword"><p className='text-center pt-4 lg:text-left font-bold text-blue-600'>Forgot password?</p></Link>
+            </div>
+
+            <div className='lg:w-96'>
+                <TextInput placeholder='Confirm password'  
+                    label='Confirm Password' 
+                    type='password' 
+                    onChange={this.handlePasswordConfirmationChanged}
+                    value={this.state.passwordConfirmation}
+                    />
+            </div>
+
+            <div className='lg:w-96'>
+                {this.state.password === '' || this.state.passwordConfirmation === ''? 
+                    (<p>{" "}</p>) :
+                        (this.state.password.localeCompare(this.state.passwordConfirmation) ? 
+                            <p className='text-center text-red-600'>Passwords don't match</p> :
+                            <p className='text-center'>Perfect match!</p>)
+                }
             </div>
 
             <div className='lg:w-96'>
                 <FormattedInputSubmit>
-                    <input type='submit' value='Sign In'/>
+                    <input type='submit' value='Change password'/>
                 </FormattedInputSubmit>
             </div>
         </form>
 
         return(
             <Container
-                title='Sign In'
+                title='Change Password'
                 bottomText={<SignInAndRegAlternateText 
                     msg='Do not have an account?'
                     linkText='Register'
@@ -104,7 +109,4 @@ class SignIn extends React.Component {
     }
 }
 
-
-
-
-export default withLocation(SignIn)
+export default withLocation(ChangePassword)

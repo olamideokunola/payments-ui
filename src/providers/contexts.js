@@ -10,7 +10,8 @@ let SignOutContext = React.createContext(handleSignOutClicked)
 
 console.log('in contexts')
 console.log(caseAuthentication.getUserData())
+let user = caseAuthentication.getUserData()
 
-let UserContext = React.createContext({email: ''})
+let UserContext = React.createContext({...user})
 
 export { SignOutContext, UserContext }

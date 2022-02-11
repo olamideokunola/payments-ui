@@ -1,3 +1,4 @@
+import React from 'react'
 import { useLocation, useNavigate, useParams } from "react-router-dom"
 
 export function withLocation(Component){
@@ -14,4 +15,32 @@ export function withParams(Component){
 
 export function withRegistration(Component){
     return props => <Component {...props}/>
+}
+
+export function withLoadedData (Component, loadData) {
+    return class extends React.Component {
+
+        constructor(props){
+            super(props)
+    
+            this.state = {
+                data: []
+            }
+        }
+    
+        async componentDidMount(){ 
+            let data = await loadData()
+            console.log(data)
+            this.setState({
+                data
+            })
+        }
+    
+        render() {
+ 
+            return(
+                <Component data={this.state.data} {...this.props}/>
+            );
+        }
+    }
 }
