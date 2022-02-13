@@ -7,6 +7,7 @@ import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { Home } from './routes/home';
 import { Payments, Payment } from './routes/payments';
 import { MerchantsPayments, Merchants, MerchantsHome, RegisterMerchant, ViewMerchant, EditMerchant } from './routes/merchants';
+import { TradersHome,Traders, ViewTrader, TraderTrades } from './routes/traders';
 import { Buyers } from './routes/buyers';
 import SignIn from '../src/routes/signIn'
 import ChangePassword from './routes/changePassword';
@@ -20,8 +21,7 @@ import { withLocation } from './components/hocs';
 import { caseAuthentication } from './services/index'
 import SignFailedImage from './imgs/dialog_images/signin-failed.svg'
 import { withNavigate} from './components/hocs'
-import Trades from './routes/trades';
-import Traders from './routes/traders';
+import {Trades} from './routes/trades';
 import Profile from './routes/profile';
 import { UsersLayout, UsersWithLoadedData as Users } from './routes/users';
 import { DeepSet } from './helpers/helpers';
@@ -310,7 +310,11 @@ class App extends React.Component {
                       <Route path="edit/:id" element={<RequireAuth><EditMerchant/></RequireAuth>}/>
                     </Route>
                     <Route path="/buyers" element={<RequireAuth><Buyers/></RequireAuth>}/>
-                    <Route path="/traders" element={<RequireAuth><Traders/></RequireAuth>}/>
+                    <Route path="/traders" element={<RequireAuth><TradersHome/></RequireAuth>}>
+                      <Route path="" element={<RequireAuth><Traders/></RequireAuth>}/>
+                      <Route path=":id" element={<RequireAuth><ViewTrader/></RequireAuth>}/>
+                      <Route path="trader-trades" element={<RequireAuth><TraderTrades/></RequireAuth>}/>
+                    </Route>
                     <Route path="/trades" element={<RequireAuth><Trades/></RequireAuth>}/>
                     <Route path="/profile" element={<RequireAuth><Profile/></RequireAuth>}/>
                     <Route path="/users" element={<RequireAuth><UsersLayoutWithAuthorizationCheck/></RequireAuth>}>

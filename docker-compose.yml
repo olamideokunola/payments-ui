@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  app:
+    image: payments-ui
+    ports:
+      - 3000:3000
+    working_dir: /payments-ui
+    environment:
+      REACT_APP_AUTHENTICATION_HOST: localhost
+      REACT_APP_BACKEND_SERVER_HOST: localhost
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    ports: 
+      - 5432:5432
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+  trading-app-be:
+    image: trading-app-be
+    restart: always
+    environment:
+      DB_HOST: db
+    ports:
+      - 4000:4000

@@ -1,6 +1,7 @@
 export class CaseManageMerchants {
-    constructor({ offChainDataAccessor }){
+    constructor({ offChainDataAccessor, chainAccessor }){
         this.offChainDataAccessor = offChainDataAccessor
+        this.chainAccessor = chainAccessor
     }
 
     async getStates(countryCode) {
@@ -26,6 +27,12 @@ export class CaseManageMerchants {
             msg:"Merchant not created successfully!",
             newMerchant: ''
         } 
+
+        // register on blockchain
+        await this.chainAccessor.registerMerchantInPaymentContract({
+            companyName: newMerchant.companyName, 
+            storeId: newMerchant.storeId
+        })
 
         return {
             status: "success",

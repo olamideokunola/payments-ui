@@ -1,8 +1,8 @@
 import React from 'react'
 import { withParams } from '../../components/hocs'
 import { caseManageMerchants } from '../../services'
-import { MerchantDataGroup } from '../../components/merchants/merchantUtils'
-import { MerchantDataSection } from '../../components/merchants/merchantUtils'
+import { DataGroup } from '../../components/dataGroups'
+import { DataSection } from '../../components/dataGroups'
 import { Link } from 'react-router-dom'
 import { Container } from '../../components/container'
 
@@ -43,31 +43,31 @@ class ViewMerchant extends React.Component {
         return (
             <Container title='Merchant Information' actionBar={actionBar}>
                 <div className='flex flex-col mt-4 gap-4'>
-                    <MerchantDataGroup>
-                        <MerchantDataSection label='Company Name' value={this.state.merchant.companyName}/>
-                        <MerchantDataSection label='Registration Number' value={this.state.merchant.registrationNumber}/>
-                    </MerchantDataGroup>
+                    <DataGroup>
+                        <DataSection label='Company Name' value={this.state.merchant.companyName}/>
+                        <DataSection label='Registration Number' value={this.state.merchant.registrationNumber}/>
+                    </DataGroup>
 
-                    <MerchantDataGroup>
-                        <MerchantDataSection label='Contact Person' value={`${this.state.merchant.firstName} ${this.state.merchant.middleName} ${this.state.merchant.lastName}`}/>
-                    </MerchantDataGroup>
+                    <DataGroup>
+                        <DataSection label='Contact Person' value={`${this.state.merchant.firstName} ${this.state.merchant.middleName} ${this.state.merchant.lastName}`}/>
+                    </DataGroup>
 
-                    <MerchantDataGroup>
-                        <MerchantDataSection label='Phone numner' value={this.state.merchant.phoneNumber}/>
-                        <MerchantDataSection label='Email' value={this.state.merchant.email}/>
-                    </MerchantDataGroup>
+                    <DataGroup>
+                        <DataSection label='Phone numner' value={this.state.merchant.phoneNumber}/>
+                        <DataSection label='Email' value={this.state.merchant.email}/>
+                    </DataGroup>
 
-                    <MerchantDataGroup>
-                        <MerchantDataSection label='Address' value={this.state.merchant.address}/>
-                        <MerchantDataSection label='Country' value={this.state.merchant.country}/>
-                        <MerchantDataSection label='State' value={this.state.merchant.state}/>
-                    </MerchantDataGroup>
+                    <DataGroup>
+                        <DataSection label='Address' value={this.state.merchant.address}/>
+                        <DataSection label='Country' value={this.state.merchant.country}/>
+                        <DataSection label='State' value={this.state.merchant.state}/>
+                    </DataGroup>
 
-                    <MerchantDataGroup>
-                        <MerchantDataSection label='Store' value={this.state.merchant.store}/>
-                        <MerchantDataSection label='Url' value={this.state.merchant.storeUrl}/>
-                        <MerchantDataSection label='Store ID' value={this.state.merchant.storeId}/>
-                    </MerchantDataGroup>
+                    <DataGroup>
+                        <DataSection label='Store' value={this.state.merchant.store}/>
+                        <DataSection label='Url' value={this.state.merchant.storeUrl}/>
+                        <DataSection label='Store ID' value={this.state.merchant.storeId}/>
+                    </DataGroup>
 
                 </div>
                 

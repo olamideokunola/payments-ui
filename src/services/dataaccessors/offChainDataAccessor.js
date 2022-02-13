@@ -233,6 +233,47 @@ const GET_MERCHANT = gql`
         }
     }
 `
+const GET_TRADERS = gql`
+    query Traders {
+        traders {
+            code
+            success
+            message
+            traders {
+                id
+                firstName
+                middleName
+                lastName
+                idPath
+                phoneNumber
+                email
+                address
+                country
+            }
+        }
+    }
+`
+
+const GET_TRADER = gql`
+    query Trader($id: ID!){
+        trader (id: $id) {
+            code
+            success
+            message
+            trader {
+                id
+                firstName
+                middleName
+                lastName
+                idPath
+                phoneNumber
+                email
+                address
+                country
+            }
+        }
+    }
+`
 
 class OffChainDataAccessor {
     constructor(options) {
@@ -476,6 +517,31 @@ class OffChainDataAccessor {
 
         return result.data.merchant
     }
+
+    async getTraders(){
+        const result = await this.client
+            .query(GET_TRADERS)
+            .toPromise();
+        console.log(`in get traders`)
+        console.log(result)
+
+        if(!result.data || !result.data.traders) return
+
+        return result.data.traders
+    }
+
+    async getTrader(id){
+        const result = await this.client
+            .query(GET_TRADER, {id})
+            .toPromise();
+        console.log(`in get trader`)
+        console.log(result)
+
+        if(!result.data || !result.data.trader) return
+
+        return result.data.trader
+    }
+
 }
 
 export { OffChainDataAccessor } 

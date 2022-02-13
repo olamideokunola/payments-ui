@@ -2,7 +2,7 @@ import React from 'react'
 import { gql } from '@apollo/client';
 import { client } from '../../api/graph';
 import { CommonSearchBar } from '../../components/searchBar';
-import { NoMerchants } from '../../components/merchants/merchantUtils';
+import { NoMerchants } from '../../components/dataGroups';
 import { Container } from '../../components/container';
 import { ContainerSection } from '../../components/container';
 import { Field,TokenField } from '../../components/container';

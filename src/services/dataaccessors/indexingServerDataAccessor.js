@@ -48,6 +48,34 @@ const PAYMENTS = gql`
   }
 `;
 
+const GET_TRADES = gql`
+  query GetTrades {
+    tradeEntities{
+      id
+      amount
+      _stableCoinSymbol
+      swap {
+        id
+        amountOut
+        _tokenAmount
+        _amountInUSD
+        _tokenSymbol
+        _transactionId
+        payment{
+          _amountInUSD
+          _transactionId
+          _fiatSymbol
+          _fiatAmount
+          vendorEntity{
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+`
+
 function dataAccessor() {
 
     function loadPendingSwaps(setResult) {
@@ -142,6 +170,25 @@ class IndexingServerDataAccessor extends EventEmitter {
       }
     })
 
+  }
+
+  async getTrades(){
+    const result = await this.client
+        .query(GET_TRADES)
+        .toPromise();
+    console.log(`in get trades`)
+    console.log(result)
+
+    if(!result.data || !result.data.tradeEntities) return { code: 200, success: false, message: 'Loading trades failed!' }
+
+    let trades =  result.data.tradeEntities.map(tr => {
+      return {
+        ...tr,
+        amount: this.fromWei(tr.amount)
+      }
+    })
+
+    return { code: 200, success: true, message:'Trades loaded!', trades} 
   }
 
   async getCountries(){
