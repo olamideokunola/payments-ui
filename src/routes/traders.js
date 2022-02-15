@@ -7,6 +7,9 @@ import { caseManageTraders } from "../services";
 import { Outlet } from "react-router-dom";
 import { ViewTrader } from "./trader/viewTrader";
 import { TraderTrades } from "./trader/traderTrades";
+import { MobileListPrimaryText } from "../components/mobile";
+import { MobileListSecondaryText } from "../components/mobile";
+import { MobileListTertiaryText } from "../components/mobile";
 
 class TradersHome extends React.Component{
     render() {
@@ -47,10 +50,21 @@ class Traders extends React.Component {
             </div>
         }
         
+        let editButton = (trader) => <p className="">{<Link to={`/traders/${trader.id}`}><button className="bg-blue-400 rounded text-white px-2 py-1 text-sm">Edit</button></Link>}</p>
+
         let displayRow = (trader, index) => {
             return <div>
                 {/* Small Screen */}
-
+                <div className="grid grid-cols-4 py-4 border-b-2 border-gray-100 items-center ">
+                    <div className="col-span-3">
+                        <MobileListPrimaryText> {`${trader.firstName} ${trader.middleName} ${trader.lastName}`}</MobileListPrimaryText>
+                        <MobileListSecondaryText>{trader.email}</MobileListSecondaryText>
+                        <MobileListTertiaryText>{trader.country}: {trader.phoneNumber} </MobileListTertiaryText>
+                    </div>
+                    <div className="flex flex-col items-end">
+                        {editButton(trader)}
+                    </div>
+                </div>
                 {console.log(trader)}
 
                 {/* Large Screen */}

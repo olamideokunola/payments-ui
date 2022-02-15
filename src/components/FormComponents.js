@@ -241,20 +241,15 @@ class ListView extends React.Component {
         return(
             <div className=''>
                 <div>
-                    {/* <h1>{headerClass}</h1> */}
-                    {/* <div className={headerClass}> */}
-                        {/* title */}
-                        {/* {this.props.headers.map((header, index) => <p key={index} className=''>{header}</p>)} */}
-                    {/* </div> */}
                     {this.props.displayHeader()}
                 </div>
                 
-                <div className='flex flex-col lg:display gap-4'>
+                <div className='flex flex-col lg:display lg:gap-4'>
                     {this.props.items && this.props.items.slice(this.state.startIndex, this.state.endIndex).map((item, index) => {
                         return <div key={index}>{this.props.displayRow(item, index)}</div>
                     })}
                 </div>
-                <div className="hidden lg:flex flex-row mt-4 gap-1 justify-end">
+                <div className="flex flex-row mt-4 gap-1 justify-end">
                     {/* <button onClick={this.gotoFirstPage}>{`<<`}</button>
                     <button onClick={this.gotoPreviousPage}>{`<`}</button> */}
                     <NavButton onClick={this.gotoFirstPage}>
@@ -278,5 +273,14 @@ class ListView extends React.Component {
     }
 }
 
+function FieldGroup (props) {
+    return <div className='lg:block bg-gray-100 p-4 rounded-lg mt-4'>
+        <h1 className='mb-4 lg:mb-0 text-xs text-gray-400'>{props.title}</h1>
+        <div className='grid grid-cols-1 flex flex-row gap-4 '>
+            {props.children}
+        </div>
+    </div>
+}
 
-export { TextInput, NumberInput, SelectInput, TextAreaInput, FileInput, FormattedInput, FormattedInputSubmit, NavButton, ListView }
+
+export { TextInput, NumberInput, SelectInput, TextAreaInput, FileInput, FormattedInput, FormattedInputSubmit, NavButton, ListView, FieldGroup }

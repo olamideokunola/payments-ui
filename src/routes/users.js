@@ -6,6 +6,13 @@ import { Link, Outlet } from "react-router-dom";
 import { caseAuthentication, caseManageUsers } from "../services";
 import { FormattedInputSubmit } from "../components/FormComponents"
 import { withLoadedData } from '../components/hocs'
+import { MobileListPrimaryText } from "../components/mobile";
+import { MobileListSecondaryText } from "../components/mobile";
+import { MobileListTertiaryText } from "../components/mobile";
+
+function SmallScreenListLabel(props) {
+    return <p className="text-xs text-blue-600 lg:hidden mt-2">{props.children}</p>
+}
 
 class Users extends React.Component {
 
@@ -30,40 +37,26 @@ class Users extends React.Component {
                 </div> 
             </div>
         }
+
+        let editButton = (user) => <p className="">{<Link to={`/users/${user.id}`}><button className="bg-blue-400 rounded text-white px-2 py-1 text-sm">Edit</button></Link>}</p>
+        
         let displayRow = (user, index) => {
             return <div>
                 {/* Small Screen */}
-                {/* <div className="lg:hidden">
-                    <DataContainer key={index}>
-                        <p className="text-xs font-light text-right">Trade: {trade.id}</p>
-                        <div>
-                            <p className="text-sm font-thin">Price</p>
-                            <p className="text-3xl font-light"> 
-                                {trade.price.toLocaleString()} 
-                                {getAmountElement(trade)}
-                            </p>
-                        </div>
-                        <div className="grid grid-cols-3">
-                            <div className="grid grid-cols-3 col-span-2 items-center gap-0">
-                                <p className="text-sm font-thin text-left">Quantity</p> <span className="font-light col-span-2">{trade.quantity.toLocaleString()} {this.props.stableCoinSymbol}</span>
-                                <p className="text-sm font-thin text-left">Amount</p> 
-                                    <span className="font-light col-span-2"> 
-                                        {(trade.price * trade.quantity).toLocaleString()} {this.props.fiatSymbol}
-                                    </span>
-                            </div>
-                            <div className="flex flex-row justify-end items-center">
-                                <button 
-                                    className="bg-white text-blue-600 w-16 h-8 rounded-md" 
-                                    onClick={this.handleToggleBuyViewVisibility.bind(this, { trade: { ...trade, fiatSymbol: this.props.fiatSymbol }})}
-                                >BUY</button>
-                            </div>
-                        </div>
-                        <p className="text-xs font-thin">Merchant: {trade.merchantId}</p>
-                    </DataContainer>
-                </div> */}
+                <div className="grid grid-cols-4 py-4 border-b-2 border-gray-100 items-center ">
+                    <div className="col-span-3">
+                        <MobileListPrimaryText>{`${user.firstName} ${user.lastName}`}</MobileListPrimaryText>
+                        <MobileListSecondaryText>{user.email}</MobileListSecondaryText>
+                        <MobileListTertiaryText>{(user.roles.map(role => role.name)).join()}</MobileListTertiaryText>
+                    </div>
+                    <div className="flex flex-col items-end">
+                        {editButton(user)}
+                    </div>
+                </div>
+
                 {console.log(user)}
                 {/* Large Screen */}
-                <div key={index} className="hidden lg:grid grid-cols-12 gap-6 font-normal items-center pt-4 pb-6 border-blue-200 border-b-2">
+                <div key={index} className="hidden lg:grid grid-cols-12 gap-6 font-normal items-center pb-6 border-blue-200 border-b-2">
                     <p className="">{user.id}</p>
                     <p className="col-span-3">{user.email}</p>
                     <p className="col-span-2">{user.firstName}</p>

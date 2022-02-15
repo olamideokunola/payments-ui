@@ -4,6 +4,7 @@ import { TextInput, SelectInput, TextAreaInput , FormattedInputSubmit} from "../
 import { caseManageUsers, caseAuthentication } from "../services";
 
 import { withFormHandlers } from '../components/hocs-forms'
+import { FieldGroup } from "../components/FormComponents";
 
 let ElementContainer = ({children}) => {
 
@@ -102,7 +103,7 @@ class NewUser extends React.Component {
         return(
             <Container title='New User'>
                 <form onSubmit={this.handleCreateUser}>
-                    <ElementContainer>
+                    <FieldGroup title='Email'>
                         <TextInput 
                             label='Email'
                             name='email'
@@ -110,60 +111,60 @@ class NewUser extends React.Component {
                             onChange={this.handleChangeData}
                             value={this.state.email}
                         />
-                    </ElementContainer>
+                    </FieldGroup>
 
-                    <ElementContainer>
+                    <FieldGroup title='Role'>
                         <SelectInput placeholder='Select Role' label='Role' 
                             options={this.state.roles ? this.state.roles : []}
                             name="role"
                             value={this.state.role}
                             onChange={this.handleChangeData}
                         />
-                    </ElementContainer>
+                    </FieldGroup>
 
-                    <div className="flex flex-row gap-4">
-                        <ElementContainer>
-                            <TextInput placeholder='Enter first name' label='First name' 
-                                name="firstName"
-                                value={this.state.firstName}
-                                onChange={this.handleChangeData}
-                            />
-                        </ElementContainer>
-
-                        <ElementContainer>
-                            <TextInput placeholder='Enter middle name' label='Middle name' 
-                                name="middleName"
-                                value={this.state.middleName}
-                                onChange={this.handleChangeData}
-                            />
-                        </ElementContainer>
-
-                        <ElementContainer>
-                                <TextInput placeholder='Enter last name' label='Last name' 
-                                name="lastName"
-                                value={this.state.lastName}
-                                onChange={this.handleChangeData}
-                            />
-                        </ElementContainer>
-                    </div>
+                    <FieldGroup title='Contact person'>
+                        
+                        <TextInput placeholder='Enter first name' label='First name' 
+                            name="firstName"
+                            value={this.state.firstName}
+                            onChange={this.handleChangeData}
+                        />
                     
-                    <ElementContainer>
+
+                    
+                        <TextInput placeholder='Enter middle name' label='Middle name' 
+                            name="middleName"
+                            value={this.state.middleName}
+                            onChange={this.handleChangeData}
+                        />
+                    
+
+                    
+                            <TextInput placeholder='Enter last name' label='Last name' 
+                            name="lastName"
+                            value={this.state.lastName}
+                            onChange={this.handleChangeData}
+                        />
+                    
+                    </FieldGroup>
+                    
+                    <FieldGroup  title='Phone'>
                             <TextInput placeholder='Enter phone number' label='Phone number' 
                             name="phoneNumber"
                             value={this.state.phoneNumber}
                             onChange={this.handleChangeData}
                         />
-                    </ElementContainer>
+                    </FieldGroup>
 
-                    <ElementContainer>
+                    <FieldGroup  title='Address'>
                         <TextAreaInput placeholder='Enter address' label='Address' 
                             name="address"
                             value={this.state.address}
                             onChange={this.handleChangeData}
                         />
-                    </ElementContainer>
+                    </FieldGroup>
                      
-                    <ElementContainer>
+                    <FieldGroup  title='Country'>
                         <SelectInput name='ID' placeholder='Select Country' label='Country' 
                             options={this.props.countries ? this.props.countries : []}
                             name="country"
@@ -172,13 +173,13 @@ class NewUser extends React.Component {
                             label='Select Country'
                             placeholder='Select Country'
                         />
-                    </ElementContainer>
+                    </FieldGroup>
                     
-                    <ElementContainer>
+                    <div className="mt-4">
                         <FormattedInputSubmit>
                             <input type='submit' value='Create User'></input>
                         </FormattedInputSubmit>
-                    </ElementContainer>
+                    </div>
 
                 </form>
             </Container>

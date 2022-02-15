@@ -291,11 +291,11 @@ class App extends React.Component {
 
   render(){
     return (
-      <div className="flex flex-col content-between">
+      <div className="content-between">
         <UserContext.Provider value={this.state.user}>
           <SignOutContext.Provider value={this.handleSignOutClicked}>
             <Header links={this.state.navLinks}/>
-              <div className="flex flex-col h-full bg-gray-100">
+              <div className="bg-gray-100 min-h-screen pt-2 overflow-visible">
                 
                 {this.state.user.email && <p className='px-6 pt-2'>Current user: {this.state.user.email}</p>}
               
@@ -326,7 +326,7 @@ class App extends React.Component {
                     <Route path="/changePassword" element={<RequireAuth><ChangePasswordWithAuthorizationCheck onChangePasswordClicked={this.handleChangePassword}/></RequireAuth>}></Route>
                     <Route path="/" element={<RequireAuth><Home/></RequireAuth>}/>
                   </Routes>
-            </div>
+              </div>
             <Footer />
           </SignOutContext.Provider>
         </UserContext.Provider>

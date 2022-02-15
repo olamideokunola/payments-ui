@@ -1,16 +1,6 @@
 import React from 'react'
 import { TextInput, TextAreaInput, SelectInput, FormattedInputSubmit, ListView } from '../../components/FormComponents';
-
-
-function FieldGroup (props) {
-    return <div className='bg-gray-100 p-4 rounded-lg mt-4'>
-        <h1 className='text-xs text-gray-400'>{props.title}</h1>
-        <div className='flex flex-row gap-4 '>
-            {props.children}
-        </div>
-    </div>
-}
-
+import { FieldGroup } from '../../components/FormComponents';
 
 class MerchantForm extends React.Component {
 

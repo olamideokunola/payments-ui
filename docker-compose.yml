@@ -1,10 +1,12 @@
 version: '3.7'
 services:
   app:
-    image: payments-ui
+    image: olamideokunola/payments-ui
     ports:
       - 3000:3000
     working_dir: /payments-ui
+    volumes:
+      - ./:/payments-ui
     environment:
       REACT_APP_AUTHENTICATION_HOST: localhost
       REACT_APP_BACKEND_SERVER_HOST: localhost
@@ -21,9 +23,11 @@ services:
     ports:
       - 8080:8080
   trading-app-be:
-    image: trading-app-be
+    image: olamideokunola/trading-app-be
     restart: always
     environment:
       DB_HOST: db
     ports:
       - 4000:4000
+volumes:
+  db:

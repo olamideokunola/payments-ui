@@ -9,6 +9,9 @@ import { RegisterMerchant } from './merchant/registerMerchant'
 import { EditMerchant } from './merchant/editMerchant';
 import { ViewMerchant } from './merchant/viewMerchant'
 import { MerchantsPayments } from './merchant/merchantsPayments';
+import { MobileListPrimaryText } from '../components/mobile';
+import { MobileListSecondaryText } from '../components/mobile';
+import { MobileListTertiaryText } from '../components/mobile';
 
 import { caseManageMerchants } from '../services';
 
@@ -54,9 +57,22 @@ class Merchants extends React.Component {
                 </div> 
             </div>
         }
+
+        let editButton = (merchant) => <p className="">{<Link to={`/merchants/${merchant.id}`}><button className="bg-blue-400 rounded text-white px-2 py-1 text-sm">Edit</button></Link>}</p>
+
         let displayRow = (merchant, index) => {
             return <div>
                 {/* Small Screen */}
+                <div className="grid grid-cols-4 py-4 border-b-2 border-gray-100 items-center ">
+                    <div className="col-span-3">
+                        <MobileListPrimaryText> {`${merchant.store}`}</MobileListPrimaryText>
+                        <MobileListSecondaryText>{merchant.storeUrl}</MobileListSecondaryText>
+                        <MobileListTertiaryText>{merchant.storeId} </MobileListTertiaryText>
+                    </div>
+                    <div className="flex flex-col items-end">
+                        {editButton(merchant)}
+                    </div>
+                </div>
 
                 {console.log(merchant)}
 

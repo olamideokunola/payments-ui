@@ -120,10 +120,10 @@ class Profile extends React.Component {
             <Container title='Profile'>
                 <div className="flex flex-col items-center gap-4 pt-4">
                     <img className="w-36" src={NoProfileImage}/>
-                    <h1 className="text-3xl">{this.props.data.firstName} {this.props.data.middleName} {this.props.data.lastName}</h1>
+                    <h1 className="text-center text-3xl text-blue-600">{this.props.data.firstName} {this.props.data.middleName} {this.props.data.lastName}</h1>
                     <p className="w-1/3 text-center">{this.props.data.address}</p>
 
-                    <div className="bg-gray-300 w-1/2 rounded-lg p-8 flex flex-col items-center gap-4">
+                    <div className="bg-gray-300 lg:w-1/2 rounded-lg p-8 flex flex-col items-center gap-4">
                         <div className="bg-white w-max px-4 py-2 rounded-full">{this.props.data.email}</div>
                         <div className="bg-white w-max px-4 py-2 rounded-full">{this.props.data.phoneNumber}</div>
                         <div className="bg-white w-max px-4 py-2 rounded-full">{this.props.data.roles.map(role => role.name).join(", ")}</div>
