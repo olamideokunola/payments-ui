@@ -54,20 +54,21 @@ export function withMerchantHelpers(Component) {
             
             // get merchant data using id from route param into state
             let id = this.props.params.id
-            let {merchant} = await caseManageMerchants.getMerchant(id)
-            this.setState({
-                ...merchant
-            })
+            if(id) {
+                let {merchant} = await caseManageMerchants.getMerchant(id)
+                this.setState({
+                    ...merchant
+                })
 
-
-            // change country from name to country two char code in state
-            let foundCountry = this.state.countries ? this.state.countries.find(ctry => ctry.text === merchant.country) : ''
-            this.setState({
-                country:foundCountry.value
-            })
-            
-            // load country's states into state 
-            await this.getStates(foundCountry.value) 
+                // change country from name to country two char code in state
+                let foundCountry = this.state.countries ? this.state.countries.find(ctry => ctry.text === merchant.country) : ''
+                this.setState({
+                    country:foundCountry.value
+                })
+                
+                // load country's states into state 
+                await this.getStates(foundCountry.value) 
+            }
         }
 
         async getStates(country){
