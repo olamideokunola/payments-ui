@@ -28,7 +28,7 @@ services:
     restart: always
     environment:
       DB_HOST: db
-      PAYMENTS_UI_HOST: localhost
+      PAYMENTS_UI_HOST: 165.232.84.196
     ports:
       - 4000:4000
 volumes:
