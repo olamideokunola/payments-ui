@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom'
 import  { data, getPayment } from '../store/store'
 
 import { gql } from '@apollo/client';
-import { client } from '../api/graph';
+import { client } from '../services/dataaccessors/apollo';
 
 import { CommonSearchBar } from '../components/searchBar';
 

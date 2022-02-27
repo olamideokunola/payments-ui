@@ -3,7 +3,7 @@ import { data } from '../store/store'
 import { Link } from 'react-router-dom'
 
 import { gql } from '@apollo/client';
-import { client } from '../api/graph';
+import { client } from '../services/dataaccessors/apollo';
 
 import { Container, ContainerSection, Field, FieldAsColumn, fromWei } from '../components/container';
 import { SearchBar } from '../components/searchBar';

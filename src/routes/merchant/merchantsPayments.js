@@ -1,6 +1,6 @@
 import React from 'react'
 import { gql } from '@apollo/client';
-import { client } from '../../api/graph';
+import { client } from '../../services/dataaccessors/urql';
 import { CommonSearchBar } from '../../components/searchBar';
 import { NoMerchants } from '../../components/dataGroups';
 import { Container } from '../../components/container';
