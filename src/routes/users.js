@@ -43,7 +43,7 @@ class Users extends React.Component {
         let displayRow = (user, index) => {
             return <div>
                 {/* Small Screen */}
-                <div className="grid grid-cols-4 py-4 border-b-2 border-gray-100 items-center ">
+                <div className="lg:hidden grid grid-cols-4 py-4 border-b-2 border-gray-100 items-center ">
                     <div className="col-span-3">
                         <MobileListPrimaryText>{`${user.firstName} ${user.lastName}`}</MobileListPrimaryText>
                         <MobileListSecondaryText>{user.email}</MobileListSecondaryText>
@@ -56,7 +56,7 @@ class Users extends React.Component {
 
                 {console.log(user)}
                 {/* Large Screen */}
-                <div key={index} className="hidden lg:grid grid-cols-12 gap-6 font-normal items-center pb-6 border-blue-200 border-b-2">
+                <div key={index} className="hidden lg:grid grid-cols-12 gap-6 font-normal items-center pt-4 pb-6 border-blue-200 border-b-2">
                     <p className="">{user.id}</p>
                     <p className="col-span-3">{user.email}</p>
                     <p className="col-span-2">{user.firstName}</p>

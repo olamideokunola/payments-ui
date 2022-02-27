@@ -297,7 +297,10 @@ class App extends React.Component {
             <Header links={this.state.navLinks}/>
               <div className="bg-gray-100 min-h-screen pt-2 overflow-visible">
                 
-                {this.state.user.email && <p className='px-6 pt-2'>Current user: {this.state.user.email}</p>}
+                {this.state.user.email && <p className='text-right  text-xs font-light text-gray-600 px-6 pt-2'>
+                  <span className='font-thin'>Current user: </span>
+                  {this.state.user.email}
+                  </p>}
               
                   <Routes>
                     <Route path="/payments/:id" element={<RequireAuth><Payment/></RequireAuth>}/>

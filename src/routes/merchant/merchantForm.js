@@ -10,10 +10,6 @@ class MerchantForm extends React.Component {
         this.handleSaveMerchant = this.handleSaveMerchant.bind(this)
     }
 
-    async componentDidMount(){
-        console.log(this.props)
-    }
-
     async handleChangeData(event){
         this.props.onChangeData(event)
     }
@@ -35,6 +31,7 @@ class MerchantForm extends React.Component {
                             name="companyName"
                             value={this.props.companyName}
                             onChange={this.handleChangeData}
+                            required
                         />
                     </div>
 
@@ -43,6 +40,7 @@ class MerchantForm extends React.Component {
                             name="registrationNumber"
                             value={this.props.registrationNumber}
                             onChange={this.handleChangeData}
+                            required
                         />
                     </div>
                 </FieldGroup>
@@ -53,6 +51,7 @@ class MerchantForm extends React.Component {
                             name="firstName"
                             value={this.props.firstName}
                             onChange={this.handleChangeData}
+                            required
                         />
                     </div>
 
@@ -61,6 +60,7 @@ class MerchantForm extends React.Component {
                             name="middleName"
                             value={this.props.middleName}
                             onChange={this.handleChangeData}
+                            
                         />
                     </div>
 
@@ -69,6 +69,7 @@ class MerchantForm extends React.Component {
                             name="lastName"
                             value={this.props.lastName}
                             onChange={this.handleChangeData}
+                            required
                         />
                     </div>
                 </FieldGroup>
@@ -79,6 +80,7 @@ class MerchantForm extends React.Component {
                             name="phoneNumber"
                             value={this.props.phoneNumber}
                             onChange={this.handleChangeData}
+                            required
                         />
                     </div>
 
@@ -88,6 +90,7 @@ class MerchantForm extends React.Component {
                             value={this.props.email}
                             type="email"
                             onChange={this.handleChangeData}
+                            required
                         />
                     </div>
                 </FieldGroup>
@@ -98,6 +101,7 @@ class MerchantForm extends React.Component {
                             name="address"
                             value={this.props.address}
                             onChange={this.handleChangeData}
+                            required
                         />
                     </div>
 
@@ -109,6 +113,7 @@ class MerchantForm extends React.Component {
                             onChange={this.handleChangeData}
                             label='Select Country'
                             placeholder='Select Country'
+                            required
                         />
                     </div>
 
@@ -133,6 +138,7 @@ class MerchantForm extends React.Component {
                             name="store"
                             value={this.props.store}
                             onChange={this.handleChangeData}
+                            required
                         />
                     </div>
 
@@ -141,6 +147,7 @@ class MerchantForm extends React.Component {
                             name="storeUrl"
                             value={this.props.storeUrl}
                             onChange={this.handleChangeData}
+                            required
                         />
                     </div>
                 </FieldGroup>

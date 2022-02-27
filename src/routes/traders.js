@@ -55,7 +55,7 @@ class Traders extends React.Component {
         let displayRow = (trader, index) => {
             return <div>
                 {/* Small Screen */}
-                <div className="grid grid-cols-4 py-4 border-b-2 border-gray-100 items-center ">
+                <div className="lg:hidden grid grid-cols-4 py-4 border-b-2 border-gray-100 items-center ">
                     <div className="col-span-3">
                         <MobileListPrimaryText> {`${trader.firstName} ${trader.middleName} ${trader.lastName}`}</MobileListPrimaryText>
                         <MobileListSecondaryText>{trader.email}</MobileListSecondaryText>

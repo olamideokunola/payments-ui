@@ -19,15 +19,15 @@ class MerchantsHome extends React.Component{
     render() {
         return(
             <div className=''>
-                <div className='mx-4 mt-4 flex flex-row gap-6 bg-gray-300 rounded-md px-2 p-2'>
+                <div className='mx-4 mt-4 flex flex-row gap-6 bg-blue-200 rounded-md px-2 p-2 text-blue-600 text-xs'>
                     <Link to="/merchants/new">
-                        <button className='py-1 border-b-2 hover:border-blue-600 text-blue-600 text-xs'>Register Merchant</button>
+                        <button className='py-1 border-b-2 hover:border-blue-600 hover:text-blue-600'>Register Merchant</button>
                     </Link>
                     <Link to="/merchants/merchant-payments">
-                        <button className='py-1 border-b-2 hover:border-blue-600 text-blue-600 text-xs'>Merchant Payments</button>
+                        <button className='py-1 border-b-2 hover:border-blue-600 hover:text-blue-600'>Merchant Payments</button>
                     </Link>
                     <Link to="/merchants">
-                        <button className='py-1 border-b-2 hover:border-blue-600 text-blue-600 text-xs'>Merchants</button>
+                        <button className='py-1 border-b-2 hover:border-blue-600 hover:text-blue-600'>Merchants</button>
                     </Link>
                 </div>
                
@@ -63,7 +63,7 @@ class Merchants extends React.Component {
         let displayRow = (merchant, index) => {
             return <div>
                 {/* Small Screen */}
-                <div className="grid grid-cols-4 py-4 border-b-2 border-gray-100 items-center ">
+                <div className="lg:hidden grid grid-cols-4 py-4 border-b-2 border-gray-100 items-center ">
                     <div className="col-span-3">
                         <MobileListPrimaryText> {`${merchant.store}`}</MobileListPrimaryText>
                         <MobileListSecondaryText>{merchant.storeUrl}</MobileListSecondaryText>

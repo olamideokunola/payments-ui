@@ -123,6 +123,7 @@ class EditUser extends React.Component {
                             placeholder="Enter user email"
                             onChange={this.handleChangeData}
                             value={this.state.email}
+                            required
                         />
                     </ElementContainer>
 
@@ -132,6 +133,7 @@ class EditUser extends React.Component {
                             name="role"
                             value={this.state.role}
                             onChange={this.handleChangeData}
+                            required
                         />
                     </ElementContainer>
 
@@ -141,6 +143,7 @@ class EditUser extends React.Component {
                                 name="firstName"
                                 value={this.state.firstName}
                                 onChange={this.handleChangeData}
+                                required
                             />
                         </ElementContainer>
 
@@ -157,6 +160,7 @@ class EditUser extends React.Component {
                                 name="lastName"
                                 value={this.state.lastName}
                                 onChange={this.handleChangeData}
+                                required
                             />
                         </ElementContainer>
                     </div>
@@ -166,6 +170,7 @@ class EditUser extends React.Component {
                             name="phoneNumber"
                             value={this.state.phoneNumber}
                             onChange={this.handleChangeData}
+                            required
                         />
                     </ElementContainer>
 
@@ -174,6 +179,7 @@ class EditUser extends React.Component {
                             name="address"
                             value={this.state.address}
                             onChange={this.handleChangeData}
+                            required
                         />
                     </ElementContainer>
                      
@@ -185,6 +191,7 @@ class EditUser extends React.Component {
                             onChange={this.handleChangeData}
                             label='Select Country'
                             placeholder='Select Country'
+                            required
                         />
                     </ElementContainer>
                     

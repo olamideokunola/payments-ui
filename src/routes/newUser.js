@@ -5,6 +5,9 @@ import { caseManageUsers, caseAuthentication } from "../services";
 
 import { withFormHandlers } from '../components/hocs-forms'
 import { FieldGroup } from "../components/FormComponents";
+import { UserForm } from "./user/userForm";
+import {withUserHelpers} from './user/withUserHelpers'
+import { withParams } from "../components/hocs";
 
 let ElementContainer = ({children}) => {
 
@@ -35,41 +38,14 @@ class NewUser extends React.Component {
         }
 
         this.handleChangeData = this.handleChangeData.bind(this)
-        this.handleCreateUser = this.handleCreateUser.bind(this)
-    }
-
-    async componentDidMount(){
-        let roles = await caseManageUsers.getEmployeeRoles()
-
-        console.log(roles)
-
-        this.setState({
-            roles: [
-                {
-                    text: "Select Role",
-                    value: "No selection"
-                },
-                ...roles.map(role => {
-                    return {
-                        text: role ? role.name: '',
-                        value: role ? role.name: ''
-                    }
-                })
-            ]
-        })
+        this.handleUpdateUserAccount = this.handleUpdateUserAccount.bind(this)
     }
 
     async handleChangeData(event){
-        console.log(event.target.name)
-
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-
-        console.log(this.state[event.target.name])
+        this.props.onChangeData(event)
     }
 
-    async handleCreateUser(event){
+    async handleUpdateUserAccount(event){
         event.preventDefault()
 
         console.log(event.target.name)
@@ -102,7 +78,8 @@ class NewUser extends React.Component {
         
         return(
             <Container title='New User'>
-                <form onSubmit={this.handleCreateUser}>
+                <UserForm onSaveUser={this.handleUpdateUserAccount} onChangeData={this.props.onChangeData} key={this.props.data.id} {...this.props.data} />
+                {/* <form onSubmit={this.handleCreateUser}>
                     <FieldGroup title='Email'>
                         <TextInput 
                             label='Email'
@@ -110,6 +87,7 @@ class NewUser extends React.Component {
                             placeholder="Enter user email"
                             onChange={this.handleChangeData}
                             value={this.state.email}
+                            required
                         />
                     </FieldGroup>
 
@@ -119,15 +97,17 @@ class NewUser extends React.Component {
                             name="role"
                             value={this.state.role}
                             onChange={this.handleChangeData}
+                            required
                         />
                     </FieldGroup>
 
-                    <FieldGroup title='Contact person'>
+                    <FieldGroup title='Names'>
                         
                         <TextInput placeholder='Enter first name' label='First name' 
                             name="firstName"
                             value={this.state.firstName}
                             onChange={this.handleChangeData}
+                            required
                         />
                     
 
@@ -136,6 +116,7 @@ class NewUser extends React.Component {
                             name="middleName"
                             value={this.state.middleName}
                             onChange={this.handleChangeData}
+                            
                         />
                     
 
@@ -144,6 +125,7 @@ class NewUser extends React.Component {
                             name="lastName"
                             value={this.state.lastName}
                             onChange={this.handleChangeData}
+                            required
                         />
                     
                     </FieldGroup>
@@ -153,6 +135,7 @@ class NewUser extends React.Component {
                             name="phoneNumber"
                             value={this.state.phoneNumber}
                             onChange={this.handleChangeData}
+                            required
                         />
                     </FieldGroup>
 
@@ -161,6 +144,7 @@ class NewUser extends React.Component {
                             name="address"
                             value={this.state.address}
                             onChange={this.handleChangeData}
+                            required
                         />
                     </FieldGroup>
                      
@@ -172,6 +156,7 @@ class NewUser extends React.Component {
                             onChange={this.handleChangeData}
                             label='Select Country'
                             placeholder='Select Country'
+                            required
                         />
                     </FieldGroup>
                     
@@ -181,10 +166,14 @@ class NewUser extends React.Component {
                         </FormattedInputSubmit>
                     </div>
 
-                </form>
+                </form> */}
             </Container>
         );
     }
 }
 
-export default withFormHandlers(NewUser) 
+// let EditMerchantWithData = withNavigate(withParams(withMerchantHelpers(EditMerchant)))
+
+export default withParams(withUserHelpers(NewUser))
+// export default withFormHandlers(NewUser) 
+

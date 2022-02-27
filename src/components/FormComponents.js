@@ -63,6 +63,7 @@ function TextInput(props) {
                 placeholder={props.placeholder}
                 value={props.value}
                 onChange={props.onChange}
+                required={props.required}
                 >
             </input>
         </div>
@@ -80,6 +81,7 @@ function SelectInput(props) {
                 name={props.name}
                 value={props.value}
                 onChange={props.onChange}
+                required={props.required}
                 // style="background-image: url(../imgs/logo.png)"
             >
                 {props.options ? props.options.map((opt, ind) => {
@@ -100,7 +102,9 @@ function TextAreaInput(props) {
                 name={props.name}
                 value={props.value}
                 onChange={props.onChange}
-                placeholder={props.placeholder}>
+                placeholder={props.placeholder}
+                required={props.required}
+                >
             </textarea>
         </div>
     );
@@ -276,7 +280,7 @@ class ListView extends React.Component {
 function FieldGroup (props) {
     return <div className='lg:block bg-gray-100 p-4 rounded-lg mt-4'>
         <h1 className='mb-4 lg:mb-0 text-xs text-gray-400'>{props.title}</h1>
-        <div className='grid grid-cols-1 flex flex-row gap-4 '>
+        <div className='grid grid-cols-1 lg:flex flex-row gap-4 '>
             {props.children}
         </div>
     </div>

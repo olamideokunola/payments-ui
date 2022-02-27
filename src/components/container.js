@@ -2,7 +2,7 @@ import React from 'react'
 
 function ContainerTitle (props) {
     return (
-        <h2 className="font-semibold text-xl">{props.title}</h2>
+        <h2 className="font-semibold text-3xl">{props.title}</h2>
     );
 }
 

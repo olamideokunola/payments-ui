@@ -94,7 +94,7 @@ class Header extends React.Component {
                 <div className="flex flex-row justify-between items-center m-4">
                     <div className="flex flex-row items-center"> 
                         <img className="w-12 mr-2" src={cbLogo} alt="CryptoBank Logo"/>
-                        <h1 className="text-xl lg:text-2xl font-semibold">CryptoBank Payments</h1>
+                        <h1 className="text-xl lg:text-xl font-semibold">CryptoBank Payments</h1>
                     </div>
                     <div className="hidden md:inline-flex">
                         <DesktopNavBar navBarlinks={navBarlinks}/>
