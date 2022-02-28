@@ -21,6 +21,7 @@ export function withUserHelpers(Component) {
             }
             
             this.handleChangeData = this.handleChangeData.bind(this)
+            this.handleUserLoaded = this.handleUserLoaded.bind(this)
         }
 
         async getAndSetCountries(){
@@ -92,15 +93,21 @@ export function withUserHelpers(Component) {
         }
         
         async handleChangeData(event){
-            console.log(event.target.name)
+            console.log(event.target.value)
 
             this.setState({
                 [event.target.name]: event.target.value
             })
         }
 
+        async handleUserLoaded(loadedUser){
+            this.setState({
+                ...loadedUser
+            })
+        }
+
         render() {
-            return <Component onChangeData={this.handleChangeData} data={{...this.state}} {...this.props}/>
+            return <Component onChangeData={this.handleChangeData} onUserLoaded={this.handleUserLoaded} data={{...this.state}} {...this.props}/>
         }
     }
 }

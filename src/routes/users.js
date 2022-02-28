@@ -38,7 +38,7 @@ class Users extends React.Component {
             </div>
         }
 
-        let editButton = (user) => <p className="">{<Link to={`/users/${user.id}`}><button className="bg-blue-400 rounded text-white px-2 py-1 text-sm">Edit</button></Link>}</p>
+        let editButton = (user) => <p className="">{<Link to={`/users/edit/${user.id}`}><button className="bg-blue-400 rounded text-white px-2 py-1 text-sm">Edit</button></Link>}</p>
         
         let displayRow = (user, index) => {
             return <div>
@@ -58,11 +58,11 @@ class Users extends React.Component {
                 {/* Large Screen */}
                 <div key={index} className="hidden lg:grid grid-cols-12 gap-6 font-normal items-center pt-4 pb-6 border-blue-200 border-b-2">
                     <p className="">{user.id}</p>
-                    <p className="col-span-3">{user.email}</p>
+                    <p className="col-span-3">{<Link to={`/users/${user.id}`}><p className="px-2 py-1 font-semibold text-blue-600">{user.email}</p></Link>}</p>
                     <p className="col-span-2">{user.firstName}</p>
                     <p className="col-span-2">{user.lastName}</p>
                     <p className="col-span-3">{(user.roles.map(role => role.name)).join()}</p>
-                    <p className="">{<Link to={`/users/${user.id}`}><button className="bg-blue-600 rounded text-white px-2 py-1 text-sm">Edit</button></Link>}</p>
+                    <p className="">{<Link to={`/users/edit/${user.id}`}><button className="bg-blue-600 rounded text-white px-2 py-1 text-sm">Edit</button></Link>}</p>
                 </div>
             </div>
         }

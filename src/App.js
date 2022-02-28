@@ -11,8 +11,10 @@ import { TradersHome,Traders, ViewTrader, TraderTrades } from './routes/traders'
 import { Buyers } from './routes/buyers';
 import SignIn from '../src/routes/signIn'
 import ChangePassword from './routes/changePassword';
+
 import NewUser  from './routes/newUser';
 import EditUser from './routes/editUser';
+import ViewUser from './routes/user/viewUser';
 
 
 import { SignOutContext, UserContext } from './providers/contexts'
@@ -113,10 +115,11 @@ function withAuthorizationCheck(WrappedComponent) {
         <UserContext.Consumer>
             {user => (
               <div>
-                  {!this.isAuthorized(user) ?
-                  <Navigate to="/" replace={true}/> : 
-                  <WrappedComponent {...this.props}></WrappedComponent>
-                }
+                  {
+                    !this.isAuthorized(user) ?
+                    <Navigate to="/" replace={true}/> :
+                    <WrappedComponent {...this.props}></WrappedComponent>
+                  }
               </div>
          )}
          </UserContext.Consumer>
@@ -132,6 +135,7 @@ let PaymentsWithAuthorizationCheck = withAuthorizationCheck(Payments)
 let NewUserWithAuthorizationCheck = withAuthorizationCheck(NewUser)
 let ChangePasswordWithAuthorizationCheck = withAuthorizationCheck(ChangePassword)
 let EditUserWithAuthorizationCheck = withAuthorizationCheck(EditUser)
+let ViewUserWithAuthorizationCheck = withAuthorizationCheck(ViewUser)
 
 
 class App extends React.Component {
@@ -323,7 +327,8 @@ class App extends React.Component {
                     <Route path="/users" element={<RequireAuth><UsersLayoutWithAuthorizationCheck/></RequireAuth>}>
                       <Route path="" element={<RequireAuth><UsersWithAuthorizationCheck/></RequireAuth>}/>
                       <Route path="new" element={<NewUserWithAuthorizationCheck onTriggerErrorMessageDialog={this.handleTriggerErrorMessageDialog}/>} />
-                      <Route path=":id" element={<EditUserWithAuthorizationCheck onTriggerErrorMessageDialog={this.handleTriggerErrorMessageDialog}/>} />
+                      <Route path="edit/:id" element={<EditUserWithAuthorizationCheck onTriggerErrorMessageDialog={this.handleTriggerErrorMessageDialog}/>} />
+                      <Route path=":id" element={<ViewUserWithAuthorizationCheck onTriggerErrorMessageDialog={this.handleTriggerErrorMessageDialog}/>} />
                     </Route>
                     <Route path="/signIn" element={<SignIn onSignIn={this.handleSignInClicked}/>}/>
                     <Route path="/changePassword" element={<RequireAuth><ChangePasswordWithAuthorizationCheck onChangePasswordClicked={this.handleChangePassword}/></RequireAuth>}></Route>

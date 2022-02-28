@@ -25,7 +25,7 @@ class UserForm extends React.Component {
 
     render() {
 
-        return <form onSubmit={this.handleCreateUser}>
+        return <form onSubmit={this.handleSaveUser}>
             <FieldGroup title='Email'>
                 <TextInput 
                     label='Email'

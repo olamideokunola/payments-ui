@@ -6,36 +6,13 @@ import { caseManageUsers, caseAuthentication } from "../services";
 import { withFormHandlers } from '../components/hocs-forms'
 import { FieldGroup } from "../components/FormComponents";
 import { UserForm } from "./user/userForm";
-import {withUserHelpers} from './user/withUserHelpers'
-import { withParams } from "../components/hocs";
-
-let ElementContainer = ({children}) => {
-
-    return(
-        <div className="lg:w-96 mt-6">
-            {children}
-        </div>
-    );
-} 
-
+import { withUserHelpers } from './user/withUserHelpers'
+import { withParams, withNavigate } from "../components/hocs";
 
 class NewUser extends React.Component {
 
     constructor(props){
         super(props)
-
-        this.state = {
-            firstName: '',
-            middleName: '',
-            lastName: '',
-            country: '',
-            address: '',
-            email: '',
-            phoneNumber: '',
-            role: '',
-            countries: [],
-            roles: []
-        }
 
         this.handleChangeData = this.handleChangeData.bind(this)
         this.handleUpdateUserAccount = this.handleUpdateUserAccount.bind(this)
@@ -51,16 +28,17 @@ class NewUser extends React.Component {
         console.log(event.target.name)
 
         let newUserData = {
-            firstName: this.state.firstName,
-            middleName: this.state.middleName,
-            lastName: this.state.lastName,
-            country: this.state.country,
-            address: this.state.address,
-            email: this.state.email,
-            phoneNumber: this.state.phoneNumber,
-            roles: [this.state.role]
+            firstName: this.props.data.firstName,
+            middleName: this.props.data.middleName,
+            lastName: this.props.data.lastName,
+            country: this.props.data.country,
+            address: this.props.data.address,
+            email: this.props.data.email,
+            phoneNumber: this.props.data.phoneNumber,
+            roles: [this.props.data.role]
         }
         
+        alert(newUserData)
         console.log(newUserData)
 
         let {code, message, success, userData} = await caseManageUsers.createEmployeeUser(newUserData)
@@ -68,9 +46,11 @@ class NewUser extends React.Component {
         if(!success) {
             this.props.onTriggerErrorMessageDialog(message)
         } else {
-
+            //this.props.onTriggerErrorMessageDialog('New user created')
+            this.props.navigate('/users')
         }
 
+        alert(`User id is: ${userData.id}, name is ${userData.firstName} ${userData.lastName}` )
         console.log(userData)
     }   
 
@@ -78,95 +58,7 @@ class NewUser extends React.Component {
         
         return(
             <Container title='New User'>
-                <UserForm onSaveUser={this.handleUpdateUserAccount} onChangeData={this.props.onChangeData} key={this.props.data.id} {...this.props.data} />
-                {/* <form onSubmit={this.handleCreateUser}>
-                    <FieldGroup title='Email'>
-                        <TextInput 
-                            label='Email'
-                            name='email'
-                            placeholder="Enter user email"
-                            onChange={this.handleChangeData}
-                            value={this.state.email}
-                            required
-                        />
-                    </FieldGroup>
-
-                    <FieldGroup title='Role'>
-                        <SelectInput placeholder='Select Role' label='Role' 
-                            options={this.state.roles ? this.state.roles : []}
-                            name="role"
-                            value={this.state.role}
-                            onChange={this.handleChangeData}
-                            required
-                        />
-                    </FieldGroup>
-
-                    <FieldGroup title='Names'>
-                        
-                        <TextInput placeholder='Enter first name' label='First name' 
-                            name="firstName"
-                            value={this.state.firstName}
-                            onChange={this.handleChangeData}
-                            required
-                        />
-                    
-
-                    
-                        <TextInput placeholder='Enter middle name' label='Middle name' 
-                            name="middleName"
-                            value={this.state.middleName}
-                            onChange={this.handleChangeData}
-                            
-                        />
-                    
-
-                    
-                            <TextInput placeholder='Enter last name' label='Last name' 
-                            name="lastName"
-                            value={this.state.lastName}
-                            onChange={this.handleChangeData}
-                            required
-                        />
-                    
-                    </FieldGroup>
-                    
-                    <FieldGroup  title='Phone'>
-                            <TextInput placeholder='Enter phone number' label='Phone number' 
-                            name="phoneNumber"
-                            value={this.state.phoneNumber}
-                            onChange={this.handleChangeData}
-                            required
-                        />
-                    </FieldGroup>
-
-                    <FieldGroup  title='Address'>
-                        <TextAreaInput placeholder='Enter address' label='Address' 
-                            name="address"
-                            value={this.state.address}
-                            onChange={this.handleChangeData}
-                            required
-                        />
-                    </FieldGroup>
-                     
-                    <FieldGroup  title='Country'>
-                        <SelectInput name='ID' placeholder='Select Country' label='Country' 
-                            options={this.props.countries ? this.props.countries : []}
-                            name="country"
-                            value={this.state.country}
-                            onChange={this.handleChangeData}
-                            label='Select Country'
-                            placeholder='Select Country'
-                            required
-                        />
-                    </FieldGroup>
-                    
-                    <div className="mt-4">
-                        <FormattedInputSubmit>
-                            <input type='submit' value='Create User'></input>
-                        </FormattedInputSubmit>
-                    </div>
-
-                </form> */}
+                <UserForm onSaveUser={this.handleUpdateUserAccount} onChangeData={this.handleChangeData} key={this.props.data.id} {...this.props.data} />
             </Container>
         );
     }
@@ -174,6 +66,6 @@ class NewUser extends React.Component {
 
 // let EditMerchantWithData = withNavigate(withParams(withMerchantHelpers(EditMerchant)))
 
-export default withParams(withUserHelpers(NewUser))
+export default withParams(withUserHelpers(withNavigate(NewUser)))
 // export default withFormHandlers(NewUser) 
 

@@ -429,15 +429,19 @@ class OffChainDataAccessor {
     async createEmployeeUser(userData) {
 
         try {
-            console.log(`in createEmployeeUser`)
+            console.log(`in createEmployeeUser of off-chain dataaccessor`)
+            alert(`in createEmployeeUser`)
             console.log(userData)
+            alert(userData.email)
 
             const result = await this.client
                 .mutation(CREATE_EMPLOYEE_USER, {userData})
                 .toPromise()
 
             console.log(`employee user created`)
-            console.log(result )
+            console.log(result)
+            alert(`employee user created`)
+            alert(result.data.createEmployeeUser.email)
 
             if(!result.data || !result.data.createEmployeeUser) return
 
