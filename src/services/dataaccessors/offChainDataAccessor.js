@@ -378,7 +378,7 @@ class OffChainDataAccessor {
         try {
             console.log(`in createMerchantAccount`)
             console.log(merchantInfo)
-            // alert(merchantInfo)
+            // // alert(merchantInfo)
             const result = await this.client
                 .mutation(CREATE_MERCHANT_ACCOUNT, merchantInfo)
                 .toPromise()
@@ -399,7 +399,7 @@ class OffChainDataAccessor {
         try {
             console.log(`in updateMerchantAccount`)
             console.log(merchantData)
-            // alert(merchantInfo)
+            // // alert(merchantInfo)
             const result = await this.client
                 .mutation(UPDATE_MERCHANT_ACCOUNT, {merchantData})
                 .toPromise()
@@ -430,9 +430,9 @@ class OffChainDataAccessor {
 
         try {
             console.log(`in createEmployeeUser of off-chain dataaccessor`)
-            alert(`in createEmployeeUser`)
+            // alert(`in createEmployeeUser`)
             console.log(userData)
-            alert(userData.email)
+            // alert(userData.email)
 
             const result = await this.client
                 .mutation(CREATE_EMPLOYEE_USER, {userData})
@@ -440,8 +440,8 @@ class OffChainDataAccessor {
 
             console.log(`employee user created`)
             console.log(result)
-            alert(`employee user created`)
-            alert(result.data.createEmployeeUser.email)
+            // alert(`employee user created`)
+            // alert(result.data.createEmployeeUser.email)
 
             if(!result.data || !result.data.createEmployeeUser) return
 

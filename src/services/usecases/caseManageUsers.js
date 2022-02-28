@@ -58,14 +58,14 @@ class CaseManageUsers {
         console.log(`in createEmployeeUser`)
         
         console.log(userData)
-        alert(`in createEmployeeUser`)
+        // alert(`in createEmployeeUser`)
 
         let response = await this.offChainDataAccessor.createEmployeeUser(userData)
 
         if(!response) return {success: false, message: 'Failure for server!'}
 
         console.log(response)
-        alert(response)
+        // alert(response)
 
         return response
     }

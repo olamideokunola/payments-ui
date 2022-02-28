@@ -38,7 +38,7 @@ class NewUser extends React.Component {
             roles: [this.props.data.role]
         }
         
-        alert(newUserData)
+        // alert(newUserData)
         console.log(newUserData)
 
         let {code, message, success, userData} = await caseManageUsers.createEmployeeUser(newUserData)
@@ -50,7 +50,7 @@ class NewUser extends React.Component {
             this.props.navigate('/users')
         }
 
-        alert(`User id is: ${userData.id}, name is ${userData.firstName} ${userData.lastName}` )
+        // alert(`User id is: ${userData.id}, name is ${userData.firstName} ${userData.lastName}` )
         console.log(userData)
     }   
 
