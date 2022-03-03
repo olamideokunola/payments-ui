@@ -16,6 +16,7 @@ import NewUser  from './routes/newUser';
 import EditUser from './routes/editUser';
 import ViewUser from './routes/user/viewUser';
 
+import { SetStableCoin } from './routes/admin/setStableCoin';
 
 import { SignOutContext, UserContext } from './providers/contexts'
 import { withLocation } from './components/hocs';
@@ -136,6 +137,7 @@ let NewUserWithAuthorizationCheck = withAuthorizationCheck(NewUser)
 let ChangePasswordWithAuthorizationCheck = withAuthorizationCheck(ChangePassword)
 let EditUserWithAuthorizationCheck = withAuthorizationCheck(EditUser)
 let ViewUserWithAuthorizationCheck = withAuthorizationCheck(ViewUser)
+let SetStableCoinWithAuthorizationCheck = withAuthorizationCheck(SetStableCoin)
 
 
 class App extends React.Component {
@@ -333,6 +335,7 @@ class App extends React.Component {
                     <Route path="/signIn" element={<SignIn onSignIn={this.handleSignInClicked}/>}/>
                     <Route path="/changePassword" element={<RequireAuth><ChangePasswordWithAuthorizationCheck onChangePasswordClicked={this.handleChangePassword}/></RequireAuth>}></Route>
                     <Route path="/" element={<RequireAuth><Home/></RequireAuth>}/>
+                    <Route path="/setStableCoin" element={<RequireAuth><SetStableCoinWithAuthorizationCheck/></RequireAuth>}/>
                   </Routes>
               </div>
             <Footer />

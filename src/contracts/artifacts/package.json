@@ -1,0 +1,11 @@
+{
+  "name": "cryptobank",
+  "version": "1.0.0",
+  "description": "crytobank smart contract assets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

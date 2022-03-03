@@ -8,11 +8,24 @@ import { CaseManageUsers } from "./usecases/caseManageUsers";
 import { CaseManageTraders } from './usecases/caseManageTraders'
 import { ChainAccessor } from './dataaccessors/chainAccessor'
 import { CaseManageTrades } from './usecases/caseManageTrades'
+import { CaseAdmin } from './usecases/caseAdmin' 
 
-// import { AuthServiceFirebase } from './auth/authServiceFireBase';
+import { 
+    PaymentContract as PaymentContractDefinition, 
+    StableCoinForPayment as StableCoinForPaymentDefinition, 
+    PancakeRouter as PancakeRouterDefinition, 
+    tokensForPayment as tokensForPaymentDefinitions
+} from '../app.config'
+
+// Accessors
 let indexingServerDataAccessor = new IndexingServerDataAccessor({ client: indexingServerClient })
 let offChainDataAccessor = new OffChainDataAccessor({ clientBe })
-let chainAccessor = new ChainAccessor()
+let chainAccessor = new ChainAccessor({
+    PaymentContractDefinition,
+    StableCoinForPaymentDefinition,
+    PancakeRouterDefinition,
+    tokensForPaymentDefinitions
+})
 
 let caseAuthentication = new CaseAuthentication({
     authService: new AuthService(clientBe),
@@ -36,5 +49,8 @@ let caseManageTrades = new CaseManageTrades({
     indexingServerDataAccessor
 })
 
+let caseAdmin = new CaseAdmin({
+    chainAccessor
+})
 
-export { caseAuthentication, caseManageMerchants, caseManageUsers, caseManageTraders, caseManageTrades }
+export { caseAuthentication, caseManageMerchants, caseManageUsers, caseManageTraders, caseManageTrades, caseAdmin }

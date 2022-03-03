@@ -2,6 +2,7 @@ import Web3 from "web3";
 
 // let web3Provider
 let web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'))
+
 // let accounts
 
 // if (window.ethereum) {
