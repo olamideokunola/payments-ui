@@ -27,7 +27,7 @@ class CaseAuthentication {
 
     async signIn({email, password, twoFaCode}){
         try {
-            let userData = await this.authService.signIn({email, password, twoFaCode})
+            let userData = await this.authService.signIn({email: email.trim(), password, twoFaCode})
             return userData
         } catch (e) {
             console.error(e)

@@ -51,7 +51,7 @@ class SignIn extends React.Component {
     }
 
     handleEmailChanged(event){
-        this.setState({email: event.target.value});
+        this.setState({email: event.target.value.trim()});
         console.log(`email changed to ${event.target.value}`)
     }
 
