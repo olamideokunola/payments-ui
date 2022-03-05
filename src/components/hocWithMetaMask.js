@@ -34,8 +34,6 @@ export function withMetaMask(Component){
                     console.log('Metamask detected')
                     // startApp(provider); // initialize your app
                     await window.ethereum.enable()
-
-                    handleSetupArtifacts()
                     
                     onConnect(provider, setConnected, setWeb3)
                     onDisconnect(provider, setConnected)
@@ -101,7 +99,6 @@ export function withMetaMask(Component){
         return <Component 
                     data={{ provider,connectionStatus, chainId, account, web3, message }} 
                     test="testing message" 
-                    onSetupArtifacts={handleSetupArtifacts}
                     onConnectAccounts={handleConnectAccounts} 
                     {...props}
                 />
