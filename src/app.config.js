@@ -85,7 +85,7 @@ module.exports = {
             },
             PaymentContract: {
                 name: 'PaymentContract',
-                address: '0xaC88DB27929D2f464341b20e8d4fc6EfA2114e6b', //New: '0x7C63beF564F87F534c7cbC7CcCE4a8C9615D2482',// Old: '0xaC88DB27929D2f464341b20e8d4fc6EfA2114e6b',
+                address: '0x567dA46B42f3AC23F55084A862e0C50F028B8D71', //0xaC88DB27929D2f464341b20e8d4fc6EfA2114e6b', //New: '0x7C63beF564F87F534c7cbC7CcCE4a8C9615D2482',// Old: '0xaC88DB27929D2f464341b20e8d4fc6EfA2114e6b',
                 artifact: TruffleContract(PaymentContract)
             },
             PancakeRouter: {
