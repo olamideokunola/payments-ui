@@ -3,39 +3,44 @@ var TruffleContract = require('@truffle/contract')
 let Token1 = TruffleContract(require ("./contracts/artifacts/Token1.json"))
 let Token2 = TruffleContract(require ("./contracts/artifacts/Token2.json"))
 let ERC20 = TruffleContract(require ("./contracts/artifacts/ERC20.json"))
-let PaymentContract = TruffleContract(require ("./contracts/artifacts/PaymentContractTestNet.json"))
+let PaymentContract = TruffleContract(require ("./contracts/artifacts/PaymentContract.json"))//TruffleContract(require ("./contracts/artifacts/PaymentContractTestNet.json"))
 let PancakeRouter  = TruffleContract(require ("./contracts/artifacts/PancakeRouter.json"))
 
 module.exports = {
     networks: {
-        'local': {
+        local: {
             name: 'local',
             url: 'http://localhost:8545',
             tokensForPayment: [
                 {
                     name: 'Token1',
                     symbol: 'TK1',
+                    address: '0xe02082d609283b99e36E687CB0236e8c4ebC9dAb',
                     artifact: TruffleContract(Token1)
                 },
                 {
                     name: 'Token2',
                     symbol: 'TK2',
+                    address: '0xb16002EF30e2868e9069f1871e3C81ab9c29Aa04',
                     artifact: TruffleContract(Token2)
                 },
             ],
             PaymentContract: {
                 name: 'PaymentContract',
+                address: '0x785d253B3147A1Bd2712a098Ea9331E3A8C380B4', //New: '0x7C63beF564F87F534c7cbC7CcCE4a8C9615D2482',// Old: '0xaC88DB27929D2f464341b20e8d4fc6EfA2114e6b',
                 artifact: TruffleContract(PaymentContract)
             },
             StableCoinForPayment: {
                 symbol: "TK2",
                 name: "Token2",
+                address: '0xb16002EF30e2868e9069f1871e3C81ab9c29Aa04',
                 artifact: TruffleContract(Token2)
             },
             PancakeRouter: {
                 name: 'PancakeRouter',
+                address: '0xD55FdAbc89Ae5c1795eB954204c04BC30B99C449',
                 artifact: TruffleContract(PancakeRouter)
-            }
+            } 
         },
         parastate: {
             name: 'parastate',
@@ -91,7 +96,7 @@ module.exports = {
             tokenOwnerAddress: '0xF49f67E80Be9ce22a75579adDB9AEb64d76E1199'
         },
     },
-    get currentBlockChain() { return this.networks.bscTestnet },
+    get currentBlockChain() { return this.networks.local },
     get tokensForPayment() { return this.currentBlockChain.tokensForPayment },
     get PaymentContract() { return this.currentBlockChain.PaymentContract },
     get StableCoinForPayment() { return this.currentBlockChain.StableCoinForPayment },

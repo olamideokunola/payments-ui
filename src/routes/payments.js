@@ -13,7 +13,7 @@ import { CommonSearchBar } from '../components/searchBar';
 
 const paymentsQuery = `
     query {    
-        paymentEntities {
+        paymentEntities (first: 10, orderBy: _timestamp, orderDirection: asc, where: { _timestamp_gt: 1651236989 }) {
             id
             _transactionId
             _amountInUSD 

@@ -9,6 +9,7 @@ import { CaseManageTraders } from './usecases/caseManageTraders'
 import { ChainAccessor } from './dataaccessors/chainAccessor'
 import { CaseManageTrades } from './usecases/caseManageTrades'
 import { CaseAdmin } from './usecases/caseAdmin' 
+import { CaseNetworks } from "./usecases/caseNetworks";
 
 import { 
     PaymentContract as PaymentContractDefinition, 
@@ -53,4 +54,8 @@ let caseAdmin = new CaseAdmin({
     chainAccessor
 })
 
-export { caseAuthentication, caseManageMerchants, caseManageUsers, caseManageTraders, caseManageTrades, caseAdmin }
+let caseNetworks = new CaseNetworks({
+    indexingServerDataAccessor, chainAccessor
+})
+
+export { caseAuthentication, caseManageMerchants, caseManageUsers, caseManageTraders, caseManageTrades, caseAdmin, caseNetworks }

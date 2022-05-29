@@ -1,6 +1,6 @@
 import React from 'react'
 import { gql } from '@apollo/client';
-import { client } from '../../services/dataaccessors/urql';
+import { client } from '../../services/dataaccessors/apollo';
 import { CommonSearchBar } from '../../components/searchBar';
 import { NoMerchants } from '../../components/dataGroups';
 import { Container } from '../../components/container';
@@ -18,14 +18,14 @@ const merchantsQuery = `
                 _fiatSymbol
                 _fiatAmount
                 swap{
-                    _tokenAmount
-                    _amountInUSD
-                    _tokenSymbol
-                    amountOut
+                  _tokenAmount
+                  _amountInUSD
+                  _tokenSymbol
                 }
             }
         }
-    }`
+    }
+`
 
 export class MerchantsPayments extends React.Component {
 
@@ -36,7 +36,7 @@ export class MerchantsPayments extends React.Component {
         };
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         client.query({  
             query: gql(merchantsQuery)
         })
@@ -46,7 +46,7 @@ export class MerchantsPayments extends React.Component {
             this.setState({      
                 merchants: data.data.vendorEntities 
             });
-            //alert(vendors)
+            // alert(vendors)
         })
         .catch(err => { console.log("Error fetching data: ", err) });
     }

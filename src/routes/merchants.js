@@ -51,9 +51,10 @@ class Merchants extends React.Component {
                     <p className="col-span-2">Company name</p>
                     <p className="col-span-1">Store name</p>
                     <p className="col-span-2">Store url</p>
-                    <p className="col-span-3">Store id</p>
+                    <p className="col-span-2">Store id</p>
                     <p className="col-span-2">Email</p>
                     <p className="col-span-1">Phone</p>
+                    <p className="col-span-1">Payments</p>
                 </div> 
             </div>
         }
@@ -82,9 +83,10 @@ class Merchants extends React.Component {
                     <p className="col-span-2">{<NavLink className='text-blue-600 hover:text-blue-800 font-bold' to={`/merchants/${merchant.id}`}>{merchant.companyName}</NavLink>}</p>
                     <p className="col-span-1">{merchant.store}</p>
                     <p className="col-span-2">{merchant.storeUrl}</p>
-                    <p className="col-span-3">{merchant.storeId}</p>
+                    <p className="col-span-2">{merchant.storeId}</p>
                     <p className="col-span-2">{merchant.email}</p>
                     <p className="col-span-1">{merchant.phoneNumber}</p>
+                    <p className="col-span-1">{<NavLink className='text-blue-600 hover:text-blue-800 font-bold' to={`/merchants/${merchant.storeId}/payments`}>Payments</NavLink>}</p>
                     {/* <p className="">{<Link to={`/merchants/${merchant.id}`}><button className="bg-blue-600 rounded text-white px-2 py-1 text-sm">Edit</button></Link>}</p> */}
                 </div>
             </div>

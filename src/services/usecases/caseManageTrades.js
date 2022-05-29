@@ -3,11 +3,11 @@ export class CaseManageTrades {
         this.indexingServerDataAccessor = indexingServerDataAccessor
     }
 
-    async getTrades(){
+    async getTrades(searchParams){
 
         console.log(`in getTrades of caseManageTrades`)
 
-        let response = await this.indexingServerDataAccessor.getTrades()
+        let response = await this.indexingServerDataAccessor.getTrades(searchParams)
 
         if(!response) return
 

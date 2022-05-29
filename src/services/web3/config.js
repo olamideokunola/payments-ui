@@ -1,7 +1,19 @@
 import Web3 from "web3";
+import HDWalletProvider from '@truffle/hdwallet-provider'
 
 // let web3Provider
-let web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'))
+// let web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'))
+
+console.log(__dirname)
+
+console.log(`${process.env.REACT_APP_PRIVATE_KEY}`)
+let provider =  new HDWalletProvider({
+    privateKeys: [`${process.env.REACT_APP_PRIVATE_KEY}`], 
+    providerOrUrl: 'http://localhost:8545' //`https://data-seed-prebsc-1-s1.binance.org:8545/`
+})
+
+let web3 = new Web3(provider)
+// var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
 
 // let accounts
 
