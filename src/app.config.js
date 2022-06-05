@@ -96,7 +96,7 @@ module.exports = {
             tokenOwnerAddress: '0xF49f67E80Be9ce22a75579adDB9AEb64d76E1199'
         },
     },
-    get currentBlockChain() { return this.networks.local },
+    get currentBlockChain() { return this.networks.bscTestnet }, //local },
     get tokensForPayment() { return this.currentBlockChain.tokensForPayment },
     get PaymentContract() { return this.currentBlockChain.PaymentContract },
     get StableCoinForPayment() { return this.currentBlockChain.StableCoinForPayment },
