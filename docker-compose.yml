@@ -29,7 +29,7 @@ services:
     environment:
       DB_HOST: db
       PAYMENTS_UI_HOST: 165.232.84.196
-      TRADING_APP_UI_HOST: 134.122.59.160
+      TRADING_APP_UI_HOST: www.cryptobankafrica.io
     ports:
       - 4000:4000
 volumes:
