@@ -87,7 +87,7 @@ function BscStableCoins(props) {
     let getStableCoins = useCallback(async () => {
         const res = await caseNetworks.getStableCoins()
         const items = res.items
-        console.log('items loaded, item 2 is: ', items[1].isActive)
+        // console.log('items loaded, item 2 is: ', items[1].isActive)
         // alert(items[1].isActive)
 
         setStableCoins(() => [...items])
