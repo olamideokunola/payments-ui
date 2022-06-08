@@ -17,7 +17,7 @@ console.log(`${process.env.REACT_APP_PRIVATE_KEY}`)
 
 let localProvider =  new HDWalletProvider({
     privateKeys: [`${process.env.REACT_APP_PRIVATE_KEY}`], 
-    providerOrUrl: 'http://localhost:8545' //`https://data-seed-prebsc-1-s1.binance.org:8545/`
+    providerOrUrl: `https://data-seed-prebsc-1-s1.binance.org:8545/`
 })
 
 export function withLocalProvider(Component){
