@@ -76,16 +76,22 @@ module.exports = {
                     address: '0x8bD0EDdB0Cdce2af01eBeCd5225703817e5fce77',
                     artifact: TruffleContract(ERC20)
                 },
+                {
+                    name: 'BTC Dummy',
+                    symbol: 'BTC',
+                    address: '0x1e2F98D96E527E5E93873Fa4B2755b8261B94578',
+                    artifact: ERC20
+                },
             ],
             StableCoinForPayment: {
-                name: 'StableCoin',
-                symbol: 'STB',
-                address: '0xa93c1a951cc02eC95e93835B4cabaD2A29c9FBa5',
+                name: 'USDT Dummy', //'StableCoin',
+                symbol: 'USDT',//'STB',
+                address: '0xEE3E5274403476126EeE3589e0d84f337B931DED',//'0xa93c1a951cc02eC95e93835B4cabaD2A29c9FBa5',
                 artifact: TruffleContract(ERC20)
             },
             PaymentContract: {
                 name: 'PaymentContract',
-                address: '0x567dA46B42f3AC23F55084A862e0C50F028B8D71', //0xaC88DB27929D2f464341b20e8d4fc6EfA2114e6b', //New: '0x7C63beF564F87F534c7cbC7CcCE4a8C9615D2482',// Old: '0xaC88DB27929D2f464341b20e8d4fc6EfA2114e6b',
+                address: '0xA3ABe2097E3Ce6249914F5e1fA9b03C741104908',//0x567dA46B42f3AC23F55084A862e0C50F028B8D71', //0xaC88DB27929D2f464341b20e8d4fc6EfA2114e6b', //New: '0x7C63beF564F87F534c7cbC7CcCE4a8C9615D2482',// Old: '0xaC88DB27929D2f464341b20e8d4fc6EfA2114e6b',
                 artifact: TruffleContract(PaymentContract)
             },
             PancakeRouter: {
