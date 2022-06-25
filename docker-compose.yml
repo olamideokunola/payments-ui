@@ -3,14 +3,14 @@ services:
   app:
     image: olamideokunola/payments-ui
     ports:
-      - 3000:3000
+      - 80:3000
     working_dir: /payments-ui
     volumes:
       - ./:/payments-ui
     environment:
-      REACT_APP_AUTHENTICATION_HOST: 165.232.84.196
-      REACT_APP_BACKEND_SERVER_HOST: 165.232.84.196
-      REACT_APP_INDEXING_SERVER_HOST: 178.62.231.110
+      REACT_APP_AUTHENTICATION_HOST: payments.cryptobankafrica.io
+      REACT_APP_BACKEND_SERVER_HOST: payments.cryptobankafrica.io
+      REACT_APP_INDEXING_SERVER_HOST: indexer.cryptobankafrica.io
   db:
     image: postgres
     restart: always

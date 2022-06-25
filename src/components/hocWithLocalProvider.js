@@ -13,7 +13,7 @@ import {
 
 import Web3 from 'web3';
 import HDWalletProvider from '@truffle/hdwallet-provider'
-console.log(`${process.env.REACT_APP_PRIVATE_KEY}`)
+// console.log(`${process.env.REACT_APP_PRIVATE_KEY}`)
 
 let localProvider =  new HDWalletProvider({
     privateKeys: [`${process.env.REACT_APP_PRIVATE_KEY}`], 

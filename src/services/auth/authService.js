@@ -99,7 +99,7 @@ class AuthService {
             
             const credentials = new URLSearchParams({ username: email, password });
             
-            let result = await axios.post(`http://${process.env.REACT_APP_AUTHENTICATION_HOST}:4000/login`, credentials.toString())
+            let result = await axios.post(`https://${process.env.REACT_APP_AUTHENTICATION_HOST}/login`, credentials.toString())
             
             let token = result.data.accessToken
             console.log(`token is ${token}`)
