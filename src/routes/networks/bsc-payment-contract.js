@@ -63,14 +63,3 @@ export default function BscPaymentContract({ title }) {
         </div>
     )
 }
-
-
-
-let networks = {
-    Bsc: {
-        paymentContractAddress: "",
-    },
-    Cronos: {
-        paymentContractAddress: "",
-    }
-}
